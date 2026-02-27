@@ -1,0 +1,144 @@
+-- Abrir un Terminal de powershell
+
+## Se debe ejecutar para cambiar las reglas de juego de PowerShell temporalmente para que te deje ejecutar scripts. 
+## Habilitar la ejecución de scripts de forma segura y temporal
+
+Set-ExecutionPolicy -ExecutionPolicy RemoteSigned -Scope Process
+
+
+
+## Este comando se utiliza para eliminar por completo un entorno virtual de Python de forma rápida y definitiva
+## Si hay conflicto con versiones anteriores
+
+Remove-Item -Recurse -Force .venv
+
+
+
+## Este comando se utiliza para crear un entorno virtual aislado utilizando una versión específica de Python (la 3.11)
+## Lo que garantiza que las librerías y dependencias de tu proyecto no se mezclen ni entren en conflicto con otros proyectos o con la instalación global del sistema.
+
+py -3.11 -m venv .venv
+
+
+
+## Este comando se utiliza para activar el entorno virtual que creaste previamente
+## lo que "muda" tu terminal de una sesión global a una aislada donde todas las librerías que instales con pip se guardarán exclusivamente en la carpeta .venv.
+
+.\.venv\Scripts\activate
+
+
+
+## Este comando se utiliza para activar el entorno virtual específicamente en PowerShell
+## permitiendo que la terminal reconozca y priorice las librerías y el ejecutable de Python instalados dentro de la carpeta .venv. 
+## Al ejecutar el archivo con la extensión .ps1, le indicas a Windows que use el script diseñado para este intérprete de comandos
+## lo que modifica temporalmente las variables de entorno de tu sesión actual para que cualquier paquete que instales o utilices se mantenga aislado y 
+## no entre en conflicto con la configuración global de tu sistema.
+
+.\.venv\Scripts\Activate.ps1
+
+
+
+## Este comando se utiliza para instalar automáticamente todas las librerías y 
+## dependencias necesarias para que un proyecto de Python funcione, 
+## leyendo una lista predefinida dentro del archivo requirements.txt
+
+pip install -r requirements.txt
+
+
+
+## Este comando se utiliza para actualizar el gestor de paquetes de Python (pip) a su versión más reciente y 
+## estable disponible en el repositorio oficial (PyPI).
+
+python -m pip install --upgrade pip
+
+
+
+## Verificar la versión instalada de pip, el gestor de paquetes de Python, y 
+## confirmar la ruta exacta de la carpeta donde se están guardando tus librerías.
+
+pip --version
+
+
+
+
+## Este comando se utiliza para mostrar una lista completa de todos los paquetes de Python instalados en tu entorno actual, 
+## junto con sus versiones específicas.
+
+pip list
+
+
+
+## CORRER LOS SIGUIENTES SCRIPTS POR ORDEN EN EL TERMINAL DE POWERSHELL:
+
+1.
+py src/data_preparation.py
+
+2.
+py src/experiments.py
+
+
+
+## CORRER EL TERMINAL POWERSHELL Y DEJARLO ABIERTO:
+
+mlflow ui
+
+
+
+## USAR EL HOST PARA ENTRAR Y VER ENTORNO DE MLFLOW DE LOS MODELOS USADOS
+
+http://127.0.0.1:5000
+
+
+
+-- Abrir un Terminal de Git Bash
+
+
+## Este comando se utiliza para activar un entorno virtual de Python en sistemas basados en Unix (como Linux o macOS) 
+## o dentro de terminales específicas en Windows como Git Bash. 
+## Al ejecutarlo, la terminal "entra" en el contexto de la carpeta .venv, 
+## priorizando el ejecutable de Python y 
+## las librerías instaladas en ese entorno aislado sobre la instalación global de tu computadora
+
+source .venv/Scripts/activate
+
+
+
+## Este comando se utiliza para lanzar la interfaz gráfica de MLflow en tu navegador, 
+## permitiéndote visualizar, comparar y gestionar todos los experimentos de aprendizaje automático (Machine Learning) que hayas registrado.
+
+mlflow ui
+
+
+
+## Este comando se utiliza para especificar manualmente el puerto 5000 al iniciar la interfaz gráfica de MLflow, 
+## asegurando que el servidor se ejecute en esa "puerta" exacta de tu computadora.
+
+## CORRER EL TERMINAL POWERSHELL Y DEJARLO ABIERTO:
+
+mlflow ui --port 5000
+
+
+
+-- Abrir Otro terminal de Git Bash
+
+
+## Este comando se utiliza para desplegar un modelo de Machine Learning como un servicio web (API) local, 
+## permitiéndote enviarle datos y recibir predicciones en tiempo real sin necesidad de usar entornos de Conda.
+
+## ESTE RUN ID (668f238435ab44d9a08cd0f03b45f1dd) DEPENDE DEL MODELO QUE VAS A DESPLEGAR, MANTENERLO ABIERTO
+
+mlflow models serve -m runs:/668f238435ab44d9a08cd0f03b45f1dd/model --port 5001 --no-conda
+
+
+
+http://localhost:5000
+
+http://127.0.0.1:5001
+
+
+
+-- Abrir Otro Terminal de powershell
+
+## VER LA PREDICCIÓN DEL MODELO
+
+py src/prediction.py
