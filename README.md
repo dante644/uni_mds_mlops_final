@@ -252,7 +252,7 @@ py src/prediction.py
 
 **O**
 
-El uso de curl como cliente de la API REST es la forma más directa y pura de interactuar con el modelo desde la terminal de comandos de Bit Bash y solo colocariamos el siguiente codigo para la predicción solicitada.
+El uso de curl como cliente de la API REST es la forma más directa y pura de interactuar con el modelo desde la terminal de comandos de Git Bash y solo colocariamos el siguiente codigo para la predicción solicitada.
 
 ```bash
 # En el terminal del Git Bash
